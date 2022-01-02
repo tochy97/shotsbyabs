@@ -2,7 +2,7 @@ import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 import Gallery from './Gallery/Gallery';
 
-function Dashboard(props) {
+function Dashboard() {
     return (
         <Routes>
             <Route path="" element={<Gallery/>} />

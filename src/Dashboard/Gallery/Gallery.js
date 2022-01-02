@@ -1,8 +1,8 @@
 import React from 'react';
 
-function Gallery(props) {
+function Gallery() {
     return (
-        <h1>Dashboard Galley</h1>
+        <h1>Dashboard Gallery</h1>
     );
 }
 

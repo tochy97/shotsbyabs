@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { shallowEqual, useSelector, useDispatch } from 'react-redux';
+import { getAuth } from "firebase/auth";
 import { Navbar, Container, Offcanvas, Form, Nav, Button } from "react-bootstrap";
 import { auth } from '../config/firebase';
 import logo from "../pics/logo.png";
@@ -9,13 +10,14 @@ function NavComp() {
     const [password, setPassword] = useState("");
     const [email, setEmail] = useState("");
 
+    const dispatch = useDispatch();
+
     const {isLoggedIn, id} = useSelector(
       (state) =>({
         isLoggedIn:state.auth.isLoggedIn, 
-          id:state.auth.id,
+        id:state.auth.id,
       }), shallowEqual
-  );
-    const dispatch = useDispatch();
+    );
 
     function handleLogin(e){
       e.preventDefault();
@@ -30,9 +32,9 @@ function NavComp() {
     return (
     <Navbar expand={false} style={{color:"#fff"}}>
     <Container fluid>
-      <Navbar.Brand href="#"><img src={logo} style={{width:"10rem"}} alt="Shots by Abs" /></Navbar.Brand>
+      <Navbar.Brand href="/"><img src={logo} style={{width:"10rem"}} alt="Shots by Abs" /></Navbar.Brand>
       <Navbar.Toggle aria-controls="offcanvasNavbar" 
-        style={{marginRight:"2rem", border:0}}>Admin</Navbar.Toggle> 
+        style={{marginRight:"2rem", border:0, color:"#039374"}}>Admin</Navbar.Toggle> 
       <Navbar.Offcanvas
         id="offcanvasNavbar"
         aria-labelledby="offcanvasNavbarLabel"

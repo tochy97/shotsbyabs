@@ -1,4 +1,5 @@
-import { Card } from "react-bootstrap";
+import React from 'react';
+import { Container } from 'react-bootstrap';
 import { Routes, Route } from "react-router-dom";
 import Admin from "./Auth";
 import Dashboard from "./Dashboard"
@@ -7,14 +8,14 @@ import SidePanel from "./SidePanel/SidePanel"
 
 function App() {
   return (
-    <>
-    <NavComp/>
-    <SidePanel/>
-    <Routes>
-      <Route path="admin/*" element={<Admin/>} />
-      <Route path="/*" element={<Dashboard/>} />
-    </Routes>
-    </>
+    <Container style={{display:"inline"}}>
+      <NavComp/>
+      <SidePanel/>
+      <Routes>
+        <Route path="admin/*" element={<Admin/>} />
+        <Route path="/*" element={<Dashboard/>} />
+      </Routes>
+    </Container>
   );
 }
 
