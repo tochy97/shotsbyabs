@@ -1,9 +1,11 @@
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
-import AddLog from './Log/AddLog';
-import ManageLog from './Log/ManageLog';
-import AddPost from './Post/AddPost';
-import ManagePost from './Post/ManagePost';
+import AddLog from './Data/Log/AddLog';
+import ManageLog from './Data/Log/ManageLog';
+import AddPack from './Data/Pack/AddPack';
+import ManagePack from './Data/Pack/ManagePack';
+import AddPost from './Data/Post/AddPost';
+import ManagePost from './Data/Post/ManagePost';
 
 function Admin() {
     return (
@@ -12,6 +14,8 @@ function Admin() {
             <Route path="managepost" element={<ManagePost/>} />
             <Route path="addlog" element={<AddLog/>} />
             <Route path="managelog" element={<ManageLog/>} />
+            <Route path="addPack" element={<AddPack/>} />
+            <Route path="managePack" element={<ManagePack/>} />
         </Routes>
     );
 }

@@ -1,6 +1,6 @@
 import React from 'react';
 
-function AddPost(props) {
+function ManagePack(props) {
     return (
         <div>
             
@@ -8,4 +8,4 @@ function AddPost(props) {
     );
 }
 
-export default AddPost;
+export default ManagePack;

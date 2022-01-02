@@ -1,16 +1,17 @@
-import { SET_LOADING, ADD_POST, SET_POST, RESET_POST, DELETE_POST, ADD_COMMENT, DELETE_COMMENT } from "../types/postTypes";
+import { SET_LOADING, ADD_POST, SET_POST, RESET_POST, DELETE_POST } from "../types/dataTypes";
 
 const initialState = {
     isLoading: true,
     posts: null,
+    logs: null,
+    packs: null
 }
 
-const postReducer = (state=initialState, {type, payload})=>{
+const dataReducer = (state=initialState, {type, payload})=>{
     switch(type){
         case SET_LOADING:
             state={ ...state,
                 isLoading: payload,
-                posts: null,
             }
             return state;
         case ADD_POST:
@@ -19,7 +20,9 @@ const postReducer = (state=initialState, {type, payload})=>{
             }
             return state;
         case SET_POST:
-            state={...state,posts:payload}
+            state={...state,
+                posts:payload
+            }
             return state;
         case RESET_POST:
             state=initialState;
@@ -35,4 +38,4 @@ const postReducer = (state=initialState, {type, payload})=>{
     }
 }
 
-export default postReducer;
+export default dataReducer;

@@ -16,7 +16,6 @@ function NavComp() {
       }), shallowEqual
     );
 
-
     function handleLogin(e){
       e.preventDefault();
       dispatch(loginUser(email,password));
@@ -47,10 +46,12 @@ function NavComp() {
             </Offcanvas.Header>
             <Offcanvas.Body>
               <Nav className="justify-content-end flex-grow-1 pe-3">
-                <Nav.Link style={{color:"black"}} href="/addpost">Add Post</Nav.Link>
-                <Nav.Link style={{color:"black"}} href="/managepost">Manage Post</Nav.Link>
-                <Nav.Link style={{color:"black"}} href="/addlog">Add Log</Nav.Link>
-                <Nav.Link style={{color:"black"}} href="/managelog">Manage Log</Nav.Link>
+                <Nav.Link style={{color:"black"}} href="/admin/addpost">Add a post</Nav.Link>
+                <Nav.Link style={{color:"black"}} href="/admin/managepost">Manage posts</Nav.Link>
+                <Nav.Link style={{color:"black"}} href="/admin/addlog">Log a sale</Nav.Link>
+                <Nav.Link style={{color:"black"}} href="/admin/managelog">Manage logs</Nav.Link>
+                <Nav.Link style={{color:"black"}} href="/admin/addPack">Add a package</Nav.Link>
+                <Nav.Link style={{color:"black"}} href="/admin/managePack">Manage packages</Nav.Link>
                 <Button className='mt-5' variant='dark' onClick={handleLogout}>Logout</Button>
               </Nav>
             </Offcanvas.Body>

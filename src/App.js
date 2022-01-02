@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
-import { Container } from 'react-bootstrap';
+import { useDispatch, useSelector, shallowEqual } from 'react-redux';
+import { Card, Container } from 'react-bootstrap';
 import { Routes, Route } from "react-router-dom";
 import Admin from "./Admin";
 import Dashboard from "./Dashboard"
@@ -11,6 +11,12 @@ import { auth } from './config/firebase';
 
 function App() {
   const dispatch = useDispatch();
+
+  const {isLoggedIn} = useSelector(
+    (state) =>({
+      isLoggedIn:state.auth.isLoggedIn, 
+    }), shallowEqual
+  );
 
   useEffect(() => {
     auth.onAuthStateChanged(user=>{
@@ -23,15 +29,22 @@ function App() {
         dispatch(setUser(data));
     })
   }, [dispatch]);
+
   return (
-    <Container style={{display:"inline"}}>
+    <Card style={{display:"inline"}}>
       <NavComp/>
       <SidePanel/>
       <Routes>
-        <Route path="admin/*" element={<Admin/>} />
+        {
+          isLoggedIn
+            ?
+              <Route path="admin/*" element={<Admin/>} />
+            :
+              <Route path="admin/*" element={<Dashboard/>} />
+        }
         <Route path="/*" element={<Dashboard/>} />
       </Routes>
-    </Container>
+    </Card>
   );
 }
 

@@ -5,7 +5,7 @@ import Gallery from './Gallery/Gallery';
 function Dashboard() {
     return (
         <Routes>
-            <Route path="" element={<Gallery/>} />
+            <Route path="*" element={<Gallery/>} />
         </Routes>
     );
 }
