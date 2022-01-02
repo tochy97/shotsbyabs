@@ -5,7 +5,6 @@ const setLoading = data =>({
     type:types.SET_LOADING,
     payload:data,
 })
-
 const getPost = data =>({
     type:types.SET_POST,
     payload:data,

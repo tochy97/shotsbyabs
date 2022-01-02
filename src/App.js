@@ -2,10 +2,9 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector, shallowEqual } from 'react-redux';
 import { Card, Container } from 'react-bootstrap';
 import { Routes, Route } from "react-router-dom";
-import Admin from "./Admin";
-import Dashboard from "./Dashboard"
-import NavComp from "./NavComp/NavComp"
-import SidePanel from "./SidePanel/SidePanel"
+import Admin from "./components/Admin";
+import Dashboard from "./components/Dashboard"
+import NavComp from "./components/NavComp/NavComp"
 import { setUser } from './redux/actionCreators/authActionCreators';
 import { auth } from './config/firebase';
 
@@ -33,7 +32,6 @@ function App() {
   return (
     <Card style={{display:"inline"}}>
       <NavComp/>
-      <SidePanel/>
       <Routes>
         {
           isLoggedIn

@@ -3,8 +3,8 @@ import { useDispatch } from 'react-redux';
 import {useNavigate} from "react-router-dom";
 import { Divider } from '@mui/material';
 import { Button, Container, Form, ProgressBar } from 'react-bootstrap';
-import { storage, store } from "../../../config/firebase"
-import { addPost } from "../../../redux/actionCreators/dataActionCreators"
+import { storage, store } from "../../../../config/firebase"
+import { addPost } from "../../../../redux/actionCreators/dataActionCreators"
 
 function AddPost(props) {
     const [post,setPost] = useState("");
