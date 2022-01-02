@@ -10,6 +10,12 @@ Launch pad website for Abigail Ramirez built with react frontend and google fire
 
     React chosen for familiarization.
 
+Login added
+
+    test@test.com
+
+    123456
+
 ## Requierments
 
 Abby will have an account for uploading and modifiying data.
