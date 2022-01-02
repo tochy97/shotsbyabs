@@ -1,8 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { shallowEqual, useSelector, useDispatch } from 'react-redux';
-import { getAuth } from "firebase/auth";
 import { Navbar, Container, Offcanvas, Form, Nav, Button } from "react-bootstrap";
-import { auth } from '../config/firebase';
 import logo from "../pics/logo.png";
 import { loginUser, logoutUser } from '../redux/actionCreators/authActionCreators';
 
@@ -12,12 +10,12 @@ function NavComp() {
 
     const dispatch = useDispatch();
 
-    const {isLoggedIn, id} = useSelector(
+    const {isLoggedIn} = useSelector(
       (state) =>({
         isLoggedIn:state.auth.isLoggedIn, 
-        id:state.auth.id,
       }), shallowEqual
     );
+
 
     function handleLogin(e){
       e.preventDefault();
@@ -45,12 +43,14 @@ function NavComp() {
           ?
             <>
             <Offcanvas.Header closeButton>
-              <Offcanvas.Title id="offcanvasNavbarLabel">Hello Abby!</Offcanvas.Title>
+              <Offcanvas.Title id="offcanvasNavbarLabel">Hey Abby!</Offcanvas.Title>
             </Offcanvas.Header>
             <Offcanvas.Body>
               <Nav className="justify-content-end flex-grow-1 pe-3">
-                <Nav.Link style={{color:"black"}} href="#">Home</Nav.Link>
-                <Nav.Link style={{color:"black"}} href="#">Link</Nav.Link>
+                <Nav.Link style={{color:"black"}} href="/addpost">Add Post</Nav.Link>
+                <Nav.Link style={{color:"black"}} href="/managepost">Manage Post</Nav.Link>
+                <Nav.Link style={{color:"black"}} href="/addlog">Add Log</Nav.Link>
+                <Nav.Link style={{color:"black"}} href="/managelog">Manage Log</Nav.Link>
                 <Button className='mt-5' variant='dark' onClick={handleLogout}>Logout</Button>
               </Nav>
             </Offcanvas.Body>

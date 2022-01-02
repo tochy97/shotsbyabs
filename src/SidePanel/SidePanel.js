@@ -22,7 +22,7 @@ function SidePanel() {
 
     return (
         <Container style={{width:"auto", position:"static", float:"left"}}>
-            <Button style={{color:"#039374", backgroundColor:"white", border:0, padding:"1rem", margin:"1rem"}} onClick={handleShow}>
+            <Button style={{color:"#039374", backgroundColor:"white", border:0, margin:"1rem"}} onClick={handleShow}>
             <h5>More</h5>
             </Button>
 

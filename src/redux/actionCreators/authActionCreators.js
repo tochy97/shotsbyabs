@@ -1,7 +1,8 @@
 import { auth, store } from "../../config/firebase"; 
+import { getAuth } from "firebase/auth";
 import * as types from "../types/authTypes";
 
-const setUser = (data) => ({
+export const setUser = (data) => ({
     type:types.SET_USER,
     payload:data
 })
@@ -27,7 +28,20 @@ export const loginUser = (email, password) => dispatch => {
         setError(dispatch(setError(err.message.split("(")[0])));
     });
 }
-
+export const checkUser = () => dispatch=>{
+    const { currentUser } = getAuth();
+    if(currentUser){
+        const data = {
+            id:currentUser.uid,
+        }
+        dispatch(setUser(data));
+        console.log(currentUser.uid)
+    }
+    else{
+        console.log("not logged in")
+    }
+}
 export const logoutUser = () => dispatch => {
+    auth.signOut();
     dispatch(resetUser());
 }
