@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector, shallowEqual } from "react-redux";
 import { Card, Button, Row, Nav } from "react-bootstrap";
 import { checkUser } from "../../../redux/actionCreators/authActionCreators"
-import { fetchLog, fetchPack, fetchPost, removePost } from "../../../redux/actionCreators/dataActionCreators"
+import { fetchLog, fetchPack, fetchPost, removePost, removePack } from "../../../redux/actionCreators/dataActionCreators"
 
 function Manager(props) {
     const [group, setGroup] = useState("pics");
@@ -76,7 +76,7 @@ function Manager(props) {
                                                     Includes: {pck.data.desc}
                                                 </Card.Body>
                                                 <Card.Footer style={{padding:"1rem", bottom:0, position:"absolute", width:"100%"}} className="bg-white mt-2">
-                                                    <Button variant="danger" onClick={()=>dispatch(removePost(pck.id))} className="form-control my-1 mb-0">Delete Package</Button>
+                                                    <Button variant="danger" onClick={()=>dispatch(removePack(pck.id))} className="form-control my-1 mb-0">Delete Package</Button>
                                                 </Card.Footer>
                                             </Card>
                                         ))
