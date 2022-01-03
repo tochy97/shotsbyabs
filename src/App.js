@@ -7,6 +7,7 @@ import Dashboard from "./components/Dashboard"
 import NavComp from "./components/NavComp/NavComp"
 import { setUser } from './redux/actionCreators/authActionCreators';
 import { auth } from './config/firebase';
+import Footer from './components/Footer/Footer';
 
 function App() {
   const dispatch = useDispatch();
@@ -43,6 +44,7 @@ function App() {
         }
         <Route path="/*" element={<Dashboard/>} />
       </Routes>
+      <Footer/>
     </Card>
   );
 }

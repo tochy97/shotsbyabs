@@ -17,11 +17,11 @@ function Contact(props) {
         <Container style={{display:"flex"}}>
             <Col>
                 <img src={abby} style={{width:"30vw"}} alt="My Photo"/>
+                <p>Photograph by Kevin Fides.</p>
             </Col>
             <Col style={{width:"30vw"}} >
                 <h1>About Shotsbyabs</h1>
                 <br/>
-                <p>Photograph by Kevin Fides.</p>
                 <br/>
                 <p>Hello, my name is Abigail. I have been in the photography industry for 6 years now. Through photography, I have worked with a range of subjects such as newborns, senior sessions, maternity, weddings, and fashion editorial just to name a few.  I have been published multiple times by Voyage Magazine and Nu View Magazine. I absolutely love styling and curating the best setups for my clients!  I look forward to capturing beautiful memories for you and your loved one(s) soon.</p>
                 <br/>
