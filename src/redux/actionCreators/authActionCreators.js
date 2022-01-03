@@ -35,10 +35,6 @@ export const checkUser = () => dispatch=>{
             id:currentUser.uid,
         }
         dispatch(setUser(data));
-        console.log(currentUser.uid)
-    }
-    else{
-        console.log("not logged in")
     }
 }
 export const logoutUser = () => dispatch => {

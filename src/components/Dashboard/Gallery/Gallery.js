@@ -1,20 +1,19 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector, shallowEqual } from "react-redux"
-import { fetchPost } from "../../../redux/actionCreators/dataActionCreators"
+import { fetchPost, fetchPack } from "../../../redux/actionCreators/dataActionCreators"
 import { checkUser } from "../../../redux/actionCreators/authActionCreators"
-import { Carousel, Container, Nav } from 'react-bootstrap';
-import { motion } from "framer-motion"
+import { Carousel, Container, Nav, Card, Row } from 'react-bootstrap';
 
 function Gallery() {
     const [group, setGroup] = useState("pics");
-    const { isLoading, posts, userID } = useSelector(
+    const { isLoading, posts, packs, userID } = useSelector(
         (state) =>({
             isLoading:state.data.isLoading, 
             posts:state.data.posts,
+            packs:state.data.packs,
             userID:state.auth.user_id,
         }), shallowEqual);
     const dispatch = useDispatch();
-    console.log(group)
     useEffect(() => {
         if(!userID){
             dispatch(checkUser());
@@ -24,6 +23,7 @@ function Gallery() {
     useEffect(() => {
         if(isLoading){
             dispatch(fetchPost());
+            dispatch(fetchPack());
         }
     }, [isLoading,dispatch]);
 
@@ -51,7 +51,7 @@ function Gallery() {
             </Nav>
             <Container style={{width:"75vw", marginTop:"1rem"}}>
                 {
-                    group === "pics"
+                    group === "pics" && posts 
                     ?
                     <Carousel>
                     {
@@ -63,7 +63,26 @@ function Gallery() {
                     }
                     </Carousel>
                     :
-                    <span><h1 className='text-center'>Coming Soon....</h1></span>
+                    group === "packs" && packs
+                    ?
+                    <Row className="px-5 my-6 gap-5">
+                        {
+                        packs.map((pck, index) => (
+                            <Card className="col-md-5 mx-auto px-0" key={index}>
+                                <Card.Title className='text-center pt-3'>{pck.data.pack}</Card.Title>
+                                <Card.Body className='mb-5 p-5'>
+                                    Cost: ${pck.data.price}
+                                    <br/>
+                                    Includes: {pck.data.desc}
+                                </Card.Body>
+                            </Card>
+                        ))
+                        }
+                    </Row>
+                    :
+                    <>
+                            <span><h1>Nothing to show</h1></span>
+                    </>
                 }
             </Container>
             </>

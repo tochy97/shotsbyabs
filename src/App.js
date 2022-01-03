@@ -12,10 +12,9 @@ import Footer from './components/Footer/Footer';
 function App() {
   const dispatch = useDispatch();
 
-  const {isLoggedIn, isLoading} = useSelector(
+  const {isLoggedIn} = useSelector(
     (state) =>({
       isLoggedIn:state.auth.isLoggedIn, 
-      isLoading:state.data.isLoading, 
     }), shallowEqual
   );
 

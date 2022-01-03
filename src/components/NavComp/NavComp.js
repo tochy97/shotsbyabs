@@ -55,9 +55,7 @@ function NavComp() {
             </Offcanvas.Header>
             <Offcanvas.Body>
               <Nav className="justify-content-end flex-grow-1 pe-3">
-                <Nav.Link style={{color:"black"}} href="/admin/addpost">Add a post</Nav.Link>
-                <Nav.Link style={{color:"black"}} href="/admin/addlog">Log a sale</Nav.Link>
-                <Nav.Link style={{color:"black"}} href="/admin/addPack">Add a package</Nav.Link>
+                <Nav.Link style={{color:"black"}} href="/admin/add">Adder</Nav.Link>
                 <Nav.Link style={{color:"black"}} href="/admin/manager">Manager</Nav.Link>
                 <Button className='mt-5' variant='dark' onClick={handleLogout}>Logout</Button>
               </Nav>
