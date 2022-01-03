@@ -7,7 +7,7 @@ function Dashboard() {
     return (
         <Routes>
             <Route exact path="/*" element={<Gallery/>} />
-            <Route exact path="/contact" element={<Contact/>} />
+            <Route exact path="/aboutme" element={<Contact/>} />
         </Routes>
     );
 }

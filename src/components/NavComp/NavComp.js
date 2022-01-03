@@ -93,7 +93,7 @@ function NavComp() {
                 <Offcanvas.Body>
                 <Container style={{float:"left",top:"1rem", position:"relative", height:"auto", width:"auto", display:"block"}}>
                   <Nav.Link style={{color:"black"}} href="/">Home</Nav.Link>
-                  <Nav.Link style={{color:"black"}} href="/contact">Contact</Nav.Link>
+                  <Nav.Link style={{color:"black"}} href="/aboutme">About me</Nav.Link>
                     <a href="https://www.instagram.com/shotsbyabs/">
                     <Image src={instagram} className="m-3" style={{width:"2rem"}} />
                     </a>
