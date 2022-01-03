@@ -28,7 +28,7 @@ function AddPost(props) {
             const uploadRef = storage.ref(`posts/${data.group}/${document.id}`);
     
             uploadRef.put(post).on("state_change", (snapshot) =>{
-                const progress = Math.round((snapshot.bytesTransferred/snapshot.totalBytes) *100)
+                const progress = Math.round((snapshot.bytesTransferred/snapshot.totalBytes) *100);
                 setProgress(progress);
             },(err) =>{
             },async () =>{

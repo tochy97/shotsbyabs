@@ -1,11 +1,13 @@
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
+import Contact from './Contact/Contact';
 import Gallery from './Gallery/Gallery';
 
 function Dashboard() {
     return (
         <Routes>
-            <Route path="*" element={<Gallery/>} />
+            <Route exact path="/*" element={<Gallery/>} />
+            <Route exact path="/contact" element={<Contact/>} />
         </Routes>
     );
 }

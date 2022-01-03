@@ -11,9 +11,10 @@ import { auth } from './config/firebase';
 function App() {
   const dispatch = useDispatch();
 
-  const {isLoggedIn} = useSelector(
+  const {isLoggedIn, isLoading} = useSelector(
     (state) =>({
       isLoggedIn:state.auth.isLoggedIn, 
+      isLoading:state.data.isLoading, 
     }), shallowEqual
   );
 
