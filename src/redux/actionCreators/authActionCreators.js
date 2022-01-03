@@ -15,6 +15,11 @@ const resetUser = () => ({
 })
 
 export const loginUser = (email, password) => dispatch => {
+    const info= {
+        error:"",
+        status:""
+    }
+    dispatch(setError(info))
     auth.signInWithEmailAndPassword(email,password)
     .then(()=>{
         const user = auth.currentUser
@@ -25,7 +30,12 @@ export const loginUser = (email, password) => dispatch => {
             dispatch(setUser(data));
     })
     .catch(err=>{
-        setError(dispatch(setError(err.message.split("(")[0])));
+        console.log(err)
+        const info= {
+            error:"Invalid username or password",
+            status:401
+        }
+        dispatch(setError(info))
     });
 }
 export const checkUser = () => dispatch=>{

@@ -52,7 +52,7 @@ function Manager(props) {
                         </Nav>
                                 <>
                                 {
-                                    group === "pics" && posts 
+                                    group === "pics" && posts.length >= 1
                                     ?
                                         posts.map((pst, index) => (
                                             <Card className="col-md-5 mx-auto px-0" key={index}>
@@ -65,7 +65,7 @@ function Manager(props) {
                                             </Card>
                                         ))
                                     :
-                                    group === "packs" && packs
+                                    group === "packs" && packs.length >= 1
                                     ?
                                         packs.map((pck, index) => (
                                             <Card className="col-md-5 mx-auto px-0" key={index}>
@@ -81,7 +81,7 @@ function Manager(props) {
                                             </Card>
                                         ))
                                     :
-                                    group === "logs" && logs
+                                    group === "logs" && logs.length >= 1
                                     ?
                                         logs.map((lg, index) => (
                                             <Card className="col-md-5 mx-auto px-0" key={index}>
@@ -96,7 +96,7 @@ function Manager(props) {
                                         ))
                                     :
                                     <>
-                                            <span><h1>Nothing to show</h1></span>
+                                            <span><h1 className='text-center'>Nothing to show</h1></span>
                                     </>
                                 
                                 }

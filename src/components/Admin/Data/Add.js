@@ -30,14 +30,13 @@ function AddPost(props) {
             type:dataType,
             createdDate: new Date(),
         }
-        store.collection("posts").add(data)
-        .then(async res=>{
+        store.collection("posts").add(data).then(async res=>{
             const document = await res.get();
             const postData = {data: document.data(),id: document.id};
             const uploadRef = storage.ref(`posts/${data.group}/${document.id}`);
     
             uploadRef.put(post).on("state_change", (snapshot) =>{
-                const progress = Math.round((snapshot.bytesTransferred/snapshot.totalBytes) *100);
+                const progress = Math.round((snapshot.bytesTransferred/snapshot.totalBytes) *100)
                 setProgress(progress);
             },(err) =>{
             },async () =>{
@@ -121,6 +120,7 @@ function AddPost(props) {
                 ? 
                 <> 
                     <Divider className="font-weight-bold text-center py-4"><h1>Uploaded succcessfully</h1></Divider>
+                    <Nav.Link style={{color:"black"}} className='text-center' href="/admin/manager">Manager</Nav.Link>
                 </> 
                         :
 
