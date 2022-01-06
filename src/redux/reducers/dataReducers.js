@@ -4,7 +4,8 @@ const initialState = {
     isLoading: true,
     posts: null,
     logs: null,
-    packs: null
+    packs: null,
+    filterPosts: null
 }
 
 const dataReducer = (state=initialState, {type, payload})=>{

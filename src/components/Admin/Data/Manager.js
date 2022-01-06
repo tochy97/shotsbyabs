@@ -6,6 +6,8 @@ import { fetchLog, fetchPack, fetchPost, removePost, removePack } from "../../..
 
 function Manager(props) {
     const [group, setGroup] = useState("pics");
+    const [postG, setpostG] = useState("all");
+    const [filterPost, setFilterPost] = useState([]);
     const dispatch = useDispatch();
 
     const { isLoading, posts, packs, logs, userID } = useSelector(
@@ -21,15 +23,24 @@ function Manager(props) {
             dispatch(checkUser());
         }
     }, [userID,dispatch]);
-    
     useEffect(() => {
         if(isLoading){
             dispatch(fetchPost());
             dispatch(fetchLog());
             dispatch(fetchPack());
         }
+        else{
+            let gList = posts.map((pst) => pst.data.group)
+            console.log(gList)
+            const temp = [...new Set(gList)]
+            setFilterPost(temp)
+            console.log(filterPost)
+        }
     }, [isLoading,dispatch]);
 
+    function capitalizeFirstLetter(string) {
+        return string.charAt(0).toUpperCase() + string.slice(1);
+    }
     return (
         <Card className="py-4" style={{border:0}}>
             {
@@ -54,16 +65,57 @@ function Manager(props) {
                                 {
                                     group === "pics" && posts.length >= 1
                                     ?
-                                        posts.map((pst, index) => (
-                                            <Card className="col-md-5 mx-auto px-0" key={index}>
-                                                <Card.Body className='mb-5'>
-                                                <Card.Img src={pst.data.post} alt={pst.data.title}/>
-                                                </Card.Body>
-                                                    <Card.Footer style={{padding:"1rem", bottom:0, position:"absolute", width:"100%"}} className="bg-white mt-2">
-                                                        <Button variant="danger" onClick={()=>dispatch(removePost(pst.id,pst.data.post))} className="form-control my-1 mb-0">Delete Post</Button>
-                                                    </Card.Footer>
-                                            </Card>
-                                        ))
+                                    <>
+                                    <Nav variant="tabs" defaultActiveKey="all" className="justify-content-center" onSelect={(selectedKey) => setpostG(selectedKey)}>
+                                        <Nav.Item>
+                                            <Nav.Link eventKey="all">
+                                                All
+                                            </Nav.Link>
+                                        </Nav.Item>
+                                        {
+                                            filterPost.map((pst,index) => (
+                                                <Nav.Item key={index}>
+                                                    <Nav.Link eventKey={pst}>
+                                                        {capitalizeFirstLetter(pst)}
+                                                    </Nav.Link>
+                                                </Nav.Item>
+                                            ))
+                                        }
+                                    </Nav>
+                                    {
+                                        postG !== "all"
+                                        ?
+                                            posts.map((pst, index) => (
+                                                <Card className="col-md-5 mx-auto px-0" key={index}>
+                                                    {
+                                                        pst.data.group === postG
+                                                        ?
+                                                            <>
+                                                            <Card.Body className='mb-5'>
+                                                            <Card.Img src={pst.data.post} alt={pst.data.title}/>
+                                                            </Card.Body>
+                                                            <Card.Footer style={{padding:"1rem", bottom:0, position:"absolute", width:"100%"}} className="bg-white mt-2">
+                                                                <Button variant="danger" onClick={()=>dispatch(removePost(pst.id,pst.data.post))} className="form-control my-1 mb-0">Delete Post</Button>
+                                                            </Card.Footer>
+                                                            </>
+                                                        :
+                                                            <></>
+                                                    }
+                                                </Card>
+                                            ))
+                                        :
+                                            posts.map((pst, index) => (
+                                                <Card className="col-md-5 mx-auto px-0" key={index}>
+                                                    <Card.Body className='mb-5'>
+                                                    <Card.Img src={pst.data.post} alt={pst.data.title}/>
+                                                    </Card.Body>
+                                                        <Card.Footer style={{padding:"1rem", bottom:0, position:"absolute", width:"100%"}} className="bg-white mt-2">
+                                                            <Button variant="danger" onClick={()=>dispatch(removePost(pst.id,pst.data.post))} className="form-control my-1 mb-0">Delete Post</Button>
+                                                        </Card.Footer>
+                                                </Card>
+                                            ))
+                                    }
+                                        </>
                                     :
                                     group === "packs" && packs.length >= 1
                                     ?

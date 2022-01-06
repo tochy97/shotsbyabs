@@ -3,8 +3,8 @@ import { useDispatch } from 'react-redux';
 import {useNavigate} from "react-router-dom";
 import { Divider } from '@mui/material';
 import { Button, Container, Form, ProgressBar, Nav } from 'react-bootstrap';
-import { storage, store } from "../../../config/firebase"
-import { addPost } from "../../../redux/actionCreators/dataActionCreators"
+import { storage, store } from "../../../config/firebase";
+import { addPost } from "../../../redux/actionCreators/dataActionCreators";
 
 function AddPost(props) {
     const [post,setPost] = useState("");
@@ -36,7 +36,7 @@ function AddPost(props) {
             const uploadRef = storage.ref(`posts/${data.group}/${document.id}`);
     
             uploadRef.put(post).on("state_change", (snapshot) =>{
-                const progress = Math.round((snapshot.bytesTransferred/snapshot.totalBytes) *100)
+                const progress = Math.round((snapshot.bytesTransferred/snapshot.totalBytes) *100);
                 setProgress(progress);
             },(err) =>{
             },async () =>{
