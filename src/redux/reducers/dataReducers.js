@@ -1,10 +1,11 @@
-import { SET_LOADING, ADD_POST, SET_POST, DELETE_POST, ADD_LOG, SET_LOG, DELETE_LOG, ADD_PACK, SET_PACK, DELETE_PACK } from "../types/dataTypes";
+import { SET_LOADING, ADD_POST, SET_POST, DELETE_POST, ADD_LOG, SET_LOG, DELETE_LOG, ADD_PACK, SET_PACK, DELETE_PACK, ADD_ZIP, SET_ZIP, DELETE_ZIP } from "../types/dataTypes";
 
 const initialState = {
     isLoading: true,
     posts: null,
     logs: null,
     packs: null,
+    zips:null,
     filterPosts: null
 }
 
@@ -61,6 +62,22 @@ const dataReducer = (state=initialState, {type, payload})=>{
             const filteredPacks = state.packs.filter(pst=> pst.id !== payload);
             state={
                 ...state,packs:filteredPacks,
+            }
+            return state;
+        case ADD_ZIP:
+            state={ ...state,
+                zips:[...state.zips,payload]
+            }
+            return state;
+        case SET_ZIP:
+            state={...state,
+                zips:payload
+            }
+            return state;
+        case DELETE_ZIP:
+            const filteredZipss = state.zips.filter(zps=> zps.id !== payload);
+            state={
+                ...state,zips:filteredZipss,
             }
             return state;
         default:

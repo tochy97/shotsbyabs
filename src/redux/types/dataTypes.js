@@ -8,3 +8,6 @@ export const DELETE_LOG = "DELETE_LOG";
 export const ADD_PACK = "ADD_PACK";
 export const SET_PACK = "SET_PACK";
 export const DELETE_PACK = "DELETE_PACK";
+export const ADD_ZIP = "ADD_ZIP";
+export const SET_ZIP = "SET_ZIP";
+export const DELETE_ZIP = "DELETE_ZIP";

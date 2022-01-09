@@ -4,10 +4,12 @@ import {useNavigate} from "react-router-dom";
 import { Divider } from '@mui/material';
 import { Button, Container, Form, ProgressBar, Nav } from 'react-bootstrap';
 import { storage, store } from "../../../config/firebase";
-import { addPost } from "../../../redux/actionCreators/dataActionCreators";
+import { addLog, addPack, addPost, addZip } from "../../../redux/actionCreators/dataActionCreators";
 
 function AddPost(props) {
     const [post,setPost] = useState("");
+    const [name,setName] = useState("");
+    const [zip,setZip] = useState("");
     const [group,setGroup] = useState("");
     const [progress,setProgress] = useState(0);
     const [firstname, setFirstname] = useState("");
@@ -68,7 +70,8 @@ function AddPost(props) {
         }
         store.collection("packs").add(data)
         .then(async res=>{
-            setProgress(100)
+            setProgress(100);
+            dispatch(addPack(data));
         })
         .catch(err=>{
         })
@@ -89,7 +92,43 @@ function AddPost(props) {
         }
         store.collection("logs").add(data)
         .then(async res=>{
-            setProgress(100)
+            setProgress(100);
+            dispatch(addLog(data));
+        })
+        .catch(err=>{
+        })
+    }
+
+    function handleAddzip(e){
+        e.preventDefault();
+        const dataType = "zip";
+        const data = {
+            zip:"",
+            name:name,
+            dataType:dataType,
+            createdDate: new Date(),
+        }
+        store.collection("zips").add(data).then(async res=>{
+            const document = await res.get();
+            const zipData = {data: document.data(),id: document.id};
+            const uploadRef = storage.ref(`zips/${data.group}/${document.id}`);
+    
+            uploadRef.put(zip).on("state_change", (snapshot) =>{
+                const progress = Math.round((snapshot.bytesTransferred/snapshot.totalBytes) *100);
+                setProgress(progress);
+            },(err) =>{
+            },async () =>{
+                const url = await uploadRef.getDownloadURL();
+                store.collection("zips").doc(document.id).update({
+                    zip:url,
+                })
+                .then(()=>{
+                    zipData.data.zip = url;
+                    dispatch(addZip(zipData));
+                })
+                .catch((err) =>{
+                })
+            });
         })
         .catch(err=>{
         })
@@ -106,6 +145,11 @@ function AddPost(props) {
             <Nav.Item>
                 <Nav.Link eventKey="packs">
                     Packages
+                </Nav.Link>
+            </Nav.Item>
+            <Nav.Item>
+                <Nav.Link eventKey="zips">
+                    Zip Files
                 </Nav.Link>
             </Nav.Item>
         </Nav>
@@ -177,6 +221,22 @@ function AddPost(props) {
                             <Form.Label>Message</Form.Label>
                         </Form.Floating>
                         <Button className='form-control mt-5' variant='dark' type="submit">Add Log</Button>
+                    </Form>
+                    </>
+                :
+                group === "zips"
+                ?
+                    <>
+                    <h1 className='text-center mt-5'>Add a zip file</h1>
+                    <Form onSubmit={handleAddzip}>
+                        <Form.Floating id="name">
+                            <Form.Control type="text"value={name} placeholder="File Name" onChange={e=>setName(e.target.value)} required></Form.Control>                            
+                            <Form.Label>File Name</Form.Label>
+                        </Form.Floating>
+                            <Form.Group id="zip">
+                                <Form.Control type="file" accept=".zip" onChange={e=>setZip(e.target.files[0])} style={{marginTop: "1rem"}}/>
+                            </Form.Group>
+                        <Button className='form-control mt-5' variant='dark' type="submit">Add Pack</Button>
                     </Form>
                     </>
                 :

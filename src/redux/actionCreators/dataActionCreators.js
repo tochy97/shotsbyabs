@@ -120,3 +120,40 @@ export const removePack = (id) => (dispatch)=> {
         dispatch(deletePack(id));
     })
 }
+
+const getZip = data =>({
+    type:types.SET_ZIP,
+    payload:data,
+})
+const deleteZip = data =>({
+    type:types.DELETE_ZIP,
+    payload:data,
+})
+
+export const addZip = data =>({
+    type:types.ADD_ZIP,
+    payload:data,
+})
+
+export const fetchZip =() =>dispatch=>{
+    dispatch(setLoading(true));
+    store.collection("zips").get().then(packs=>{
+        const allZip = [];
+
+        packs.forEach(zip => {
+            const data = {data:zip.data(),id:zip.id};
+            allZip.push(data);
+        });
+        dispatch(getPack(allZip));
+        dispatch(setLoading(false));
+    })
+    .catch((err)=>{
+    })
+}
+
+export const removeZip = (id) => (dispatch)=> {
+    store.collection("zips").doc(id).delete()
+    .then(()=>{
+        dispatch(deletePack(id));
+    })
+}

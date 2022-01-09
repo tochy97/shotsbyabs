@@ -2,6 +2,8 @@
 
 Start date: Jan 1 2022
 
+Version 1  finalization: Jan 8 2022
+
 ## Description
 
 Launch pad website for Abigail Ramirez built with react frontend and google firebase backend
@@ -10,7 +12,7 @@ Launch pad website for Abigail Ramirez built with react frontend and google fire
 
     React chosen for familiarization.
 
-Login added
+Login added (removed)
 
     test@test.com
 
@@ -18,11 +20,15 @@ Login added
 
 ## Requierments
 
-Abby will have an account for uploading and modifiying data.
+Abby will have an account for uploading and modifiying data. (completed)
 
-Customers will be able to select a package to purchase. 
+Customers will be able to select a package to purchase. (removed)
 
-Customers will be able to pay for purchases through launch pad. 
+Customers will be able to pay for purchases through launch pad. (removed)
 
-Calender api included to schedule consultations. 
+Calender api included to schedule consultations. (removed)
+
+## Todo
+
+Private link for packaged images (completed)
 

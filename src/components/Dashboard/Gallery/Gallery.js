@@ -49,15 +49,15 @@ function Gallery() {
                     </Nav.Link>
                 </Nav.Item>
             </Nav>
-            <Container style={{width:"75vw", marginTop:"1rem"}}>
+            <Container className='text-center' style={{width:"75vw", marginTop:"1rem"}}>
                 {
                     group === "pics" && posts 
                     ?
-                    <Carousel>
+                    <Carousel variant="dark">
                     {
                         posts.map((pst, index) => (
                             <Carousel.Item key={index}>
-                                <img style={{width:"75vw"}} src={pst.data.post} alt="picture"/>
+                                <img style={{height :"55vw"}} src={pst.data.post} alt="picture"/>
                             </Carousel.Item>
                         ))
                     }
